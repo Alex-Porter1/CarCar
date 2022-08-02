@@ -34,3 +34,5 @@ class AutomobileVO(models.Model):
 
     def __str__(self):
         return f"vin: {self.vin}"
+
+        
