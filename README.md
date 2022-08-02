@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Person 1 - Alex Porter Service
+* Person 2 - Menger Dou Sales
 
 ## Design
 
