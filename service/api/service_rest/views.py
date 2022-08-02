@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
-from .models import Technician
+from .models import ServiceAppointment, Technician, AutomobileVO
 from common.json import ModelEncoder
 import json
 from django.http import JsonResponse
@@ -12,6 +12,22 @@ class TechnicianEncoder(ModelEncoder):
         "technician_name",
         "employee_number",
     ]
+
+class ServiceAppointmentEncoder(ModelEncoder):
+    model = ServiceAppointment
+    properties = [
+        "vin",
+        "customer_name",
+        "scheduled_appointment",
+        "reason",
+        "finished",
+        "technician",
+    ]
+    encoders = {
+        "technician": TechnicianEncoder(),
+    }
+
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
@@ -35,3 +51,29 @@ def api_list_technicians(request):
                 {"message": "Technician ID already exists"},
                 status=400,
             )
+
+@require_http_methods(["GET", "POST"])
+def api_list_service_appointments(request):
+    if request.method == "GET":
+        appointments = ServiceAppointment.objects.all().order_by("scheduled_appointment")
+        return JsonResponse(
+            {"appointments": appointments},
+            encoder=ServiceAppointmentEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        if "technician" in content:
+            try:
+                technician = Technician.objects.get(id=content["technician"])
+                content["technician"] = technician
+            except Technician.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Technician does not exist"},
+                    status=400,
+                )
+        appointment = ServiceAppointment.objects.create(**content)
+        return JsonResponse(
+            appointment,
+            encoder=ServiceAppointmentEncoder,
+            safe=False,
+        )
