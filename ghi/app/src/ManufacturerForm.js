@@ -41,19 +41,6 @@ class ManufacturerForm extends React.Component {
         this.setState({name: value})
     }
 
-    // async componentDidMount() {
-    //     const url = 'http://localhost:8100/api/bins/';
-    
-    //     const response = await fetch(url);
-    
-    //     if (response.ok) {
-    //       const data = await response.json();
-
-    //       this.setState({bins: data.bins});
-
-    //     }
-    //   }
-
     render () {
         return (
             <div className="row">

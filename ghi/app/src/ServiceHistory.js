@@ -46,7 +46,7 @@ class ServiceHistory extends React.Component {
         <h1>Service History</h1>
         <form className="input-group" onSubmit={this.handleSubmit}>
         <div className="form-floating mb-3">
-                <input onChange={this.handleVinChange} value={this.state.vin} placeholder="vin" type="text" id={this.state.vin} name={this.state.vin}  className="form-control"  />
+                <input onChange={this.handleVinChange} value={this.state.vin} placeholder="vin" type="text" id="vin" name="vin"  className="form-control"  />
                 <label htmlFor="vinsearch">Enter Vin Here</label>
                 <button type="submit" className="btn btn-primary" onClick={(event) => this.handleSubmit(event)}>Search</button>
         </div>

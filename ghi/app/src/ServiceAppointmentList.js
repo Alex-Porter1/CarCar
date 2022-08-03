@@ -53,9 +53,6 @@ class ServiceAppointmentList extends React.Component {
     return (
       <>
       <h1>Service Appointments</h1>
-      <div className="d-grid gap-2 d-sm-flex justify-content-sm-left">
-              <Link to="/services/new" className="btn btn-primary btn-lg px-3 gap-3">Add an Appointment</Link>
-      </div>
       <table className="table table-striped">
         <thead>
           <tr>
