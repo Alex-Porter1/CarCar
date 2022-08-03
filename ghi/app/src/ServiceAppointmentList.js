@@ -1,0 +1,90 @@
+import React from "react"
+import { Link } from 'react-router-dom'
+class ServiceAppointmentList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {appointments: []}
+
+    this.deleteAppointment = this.deleteAppointment.bind(this);
+    this.updateAppointment = this.updateAppointment.bind(this);
+  }
+  
+  async componentDidMount() {
+    const response = await fetch('http://localhost:8080/api/services/')
+    if (response.ok) {
+      const data = await response.json()
+      this.setState({ appointments: data.appointments })
+    }
+  }  
+
+  async deleteAppointment(appointment) {
+    const deleteUrl = `http://localhost:8080/api/services/${appointment.id}`
+    let fetchConfig = {
+      method: "delete"
+    }
+    await fetch(deleteUrl, fetchConfig)
+
+    const idx = this.state.appointments.indexOf(appointment)
+    const updated_appointments = [...this.state.appointments]
+    updated_appointments.splice(idx, 1)
+    this.setState({ appointments: updated_appointments })
+  }
+
+  async updateAppointment(appointment) {
+    const updateUrl = `http://localhost:8080/api/services/${appointment.id}/`
+    const fetchConfig = {
+      method: "put",
+      body: JSON.stringify({"finished":"True"}),
+      headers: {
+      'Content-Type': 'application/json',
+      },
+    }
+
+    await fetch(updateUrl, fetchConfig)
+
+    const idx = this.state.appointments.indexOf(appointment)
+    const updated_appointments = [...this.state.appointments]
+    updated_appointments.splice(idx, 1)
+    this.setState({ appointments: updated_appointments })
+    this.setState({"finished": true})
+  }
+
+  render () {
+    return (
+      <>
+      <h1>Service Appointments</h1>
+      <div className="d-grid gap-2 d-sm-flex justify-content-sm-left">
+              <Link to="/services/new" className="btn btn-primary btn-lg px-3 gap-3">Add an Appointment</Link>
+      </div>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Vin</th>
+            <th>Customer name</th>
+            <th>Date</th>
+            <th>Technician</th>
+            <th>Reason</th> 
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.appointments.map(appointment => {
+            return (
+              <tr key={appointment.id}>
+                <td>{ appointment.vin }</td>
+                <td>{ appointment.customer_name }</td>
+                <td>{ appointment.scheduled_appointment }</td>
+                <td>{ appointment.technician.technician_name }</td>
+                <td>{ appointment.reason }</td>
+                <td><button className="btn btn-danger" onClick={() => this.deleteAppointment(appointment)}>Cancel</button></td>
+                <td><button className="btn btn-success" onClick={() => this.updateAppointment(appointment)}>Finished</button></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      </>
+  );    
+  }
+}
+  
+export default ServiceAppointmentList;

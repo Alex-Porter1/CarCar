@@ -6,9 +6,17 @@ import json
 from django.http import JsonResponse
 from sqlite3 import IntegrityError
 
+
+class AutomobileVOEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "vin",
+    ]
+
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties =  [
+        "id",
         "technician_name",
         "employee_number",
     ]
@@ -16,6 +24,7 @@ class TechnicianEncoder(ModelEncoder):
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
+        "id",
         "vin",
         "customer_name",
         "scheduled_appointment",
@@ -52,6 +61,7 @@ def api_list_technicians(request):
                 status=400,
             )
 
+
 @require_http_methods(["GET", "POST"])
 def api_list_service_appointments(request):
     if request.method == "GET":
@@ -77,3 +87,37 @@ def api_list_service_appointments(request):
             encoder=ServiceAppointmentEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["GET", "PUT", "DELETE"])
+def api_show_service_appointment(request, pk):
+    if request.method == "GET":
+        appointment = ServiceAppointment.objects.get(id=pk)
+        return JsonResponse(
+            appointment,
+            encoder=ServiceAppointmentEncoder,
+            safe=False,
+        )
+    elif request.method == "PUT":
+        ServiceAppointment.objects.filter(id=pk).update(finished=True)
+        appointment = ServiceAppointment.objects.get(id=pk)
+        return JsonResponse(
+            appointment,
+            encoder=ServiceAppointmentEncoder,
+            safe=False,
+        )
+    else:
+        count, _ = ServiceAppointment.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(["GET"])
+def api_list_appointments_by_vin(request, vin):
+    if request.method == "GET":
+        appointments = ServiceAppointment.objects.filter(vin=vin)
+        print(appointments)
+        return JsonResponse(
+            {"appointments": appointments},
+            encoder=ServiceAppointmentEncoder,
+        )
+
