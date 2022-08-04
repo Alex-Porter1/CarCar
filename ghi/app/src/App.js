@@ -11,6 +11,16 @@ import SalesList from './SalesList';
 import SalesHistoryList from './SalesHistory';
 import Sale from './Sales';
 import Inventory from './Inventory';
+import ManufacturerList from './ManufacturerList';
+import ManufacturerForm from './ManufacturerForm';
+import AutomobileInventoryList from './AutomobileInventoryList';
+import AutomobileInventoryForm from './AutmobileInventoryForm';
+import ServiceAppointmentList from './ServiceAppointmentList';
+import ServiceAppointmentForm from './ServiceAppointmentForm';
+import ServiceHistory from './ServiceHistory';
+import TechnicianForm from './TechnicianForm';
+
+
 
 
 
@@ -33,6 +43,15 @@ function App(props) {
             <Route path="record" element={<RecordForm />} />
             <Route path="saleslist" element={<SalesList />} /> 
             <Route path="saleshistory" element={<SalesHistoryList />} /> 
+          <Route path="/" element={<MainPage />} />
+          <Route path="/manufacturers" element={<ManufacturerList />} />
+          <Route path="/manufacturers/new" element={<ManufacturerForm />} />
+          <Route path="/automobiles" element={<AutomobileInventoryList />} />
+          <Route path="/automobiles/new" element={<AutomobileInventoryForm />} />
+          <Route path="/services" element={<ServiceAppointmentList />} />
+          <Route path="/services/new" element={<ServiceAppointmentForm />} />
+          <Route path="/history" element={<ServiceHistory />} />
+          <Route path="/technicians" element={<TechnicianForm />} />
         </Routes>
       </div>
     </BrowserRouter>
