@@ -33,16 +33,17 @@ function App(props) {
      
       <div className='container'>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="sales" element={<Sale />} />
-          <Route path="inventory" element={<Inventory />} />
-          <Route path="models"  element={<ModelsList models={props.models}/>}/>
-          <Route path="/models/new" element={<ModelForm />} />
-          <Route path="salesperson" element={<SAForm />} />
-          <Route path="customer" element={<CustomerForm />} />
-          <Route path="record" element={<RecordForm />} />
-          <Route path="saleslist" element={<SalesList />} /> 
-          <Route path="saleshistory" element={<SalesHistoryList />} /> 
+            <Route path="/" element={<MainPage />} />
+            <Route path="sales" element={<Sale />} />
+            <Route path="inventory" element={<Inventory />} />
+            <Route path="models"  element={<ModelsList models={props.models}/>}/>
+            <Route path="/models/new" element={<ModelForm />} />
+            <Route path="salesperson" element={<SAForm />} />
+            <Route path="customer" element={<CustomerForm />} />
+            <Route path="record" element={<RecordForm />} />
+            <Route path="saleslist" element={<SalesList />} /> 
+            <Route path="saleshistory" element={<SalesHistoryList />} /> 
+            
           <Route path="/manufacturers" element={<ManufacturerList />} />
           <Route path="/manufacturers/new" element={<ManufacturerForm />} />
           <Route path="/automobiles" element={<AutomobileInventoryList />} />
