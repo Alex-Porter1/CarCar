@@ -90,7 +90,7 @@ async componentDidMount(){
 
                     </select>
                   </div>
-                  <button className="btn btn-primary">Add</button>
+                  <button className="btn btn-primary btn-dark">Add</button>
                   <p className="alert alert-success d-none mb-0" id="success-message" style={{marginTop:15}}>
                     New model is created!
                 </p>

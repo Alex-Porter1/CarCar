@@ -40,6 +40,8 @@ class CustomerForm extends React.Component{
             address:'',
           };
         this.setState(cleared);
+        const loadingMessage = document.getElementById('success-message');
+        loadingMessage.classList.remove("d-none");
     }
 }
 
@@ -47,20 +49,6 @@ handleFieldChange(event) {
     const value = event.target.value;
     this.setState({[event.target.id]: value})
 }
-
-
-// async componentDidMount() {
-//     const url = 'http://localhost:8000/api/conferences/';
-//     const response = await fetch(url);
-//     if (response.ok) {
-//         const data = await response.json();
-//         this.setState({conferences: data.conferences});
-
-        
-       
-//     }
-//   }
-
     render() {
         return (
             <div className="row">
@@ -80,7 +68,10 @@ handleFieldChange(event) {
                     <input onChange={this.handleFieldChange} value={this.state.address} placeholder="Address" required type="text" name="address" id="address" className="form-control" />
                     <label htmlFor="address">Address</label>
                   </div>
-                  <button className="btn btn-primary">Add</button>
+                  <button className="btn btn-primary btn-dark">Add</button>
+                  <p className="alert alert-success d-none mb-0" id="success-message" style={{marginTop:15}}>
+                    New customer is created!
+                </p>
                 </form>
               </div>
             </div>

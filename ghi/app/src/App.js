@@ -9,8 +9,7 @@ import CustomerForm from './CustomerForm';
 import RecordForm from './RecordForm';
 import SalesList from './SalesList';
 import SalesHistoryList from './SalesHistory';
-import Sale from './Sales';
-import Inventory from './Inventory';
+
 import ManufacturerList from './ManufacturerList';
 import ManufacturerForm from './ManufacturerForm';
 import AutomobileInventoryList from './AutomobileInventoryList';
@@ -34,8 +33,8 @@ function App(props) {
       <div className='container'>
         <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="sales" element={<Sale />} />
-            <Route path="inventory" element={<Inventory />} />
+           
+            
             <Route path="models"  element={<ModelsList models={props.models}/>}/>
             <Route path="/models/new" element={<ModelForm />} />
             <Route path="salesperson" element={<SAForm />} />
