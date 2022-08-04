@@ -83,8 +83,8 @@ class ServiceAppointmentList extends React.Component {
                 <td>{ appointment.VIP ? "Yes" : "No" }</td>
                 <td>{ appointment.technician.technician_name }</td>
                 <td>{ appointment.reason }</td>
-                <td><button className="btn btn-danger" onClick={() => this.deleteAppointment(appointment)}>Cancel</button></td>
-                <td><button className="btn btn-success" onClick={() => this.updateAppointment(appointment)}>Finished</button></td>
+                <td><button className="btn btn-primary btn-dark" onClick={() => this.deleteAppointment(appointment)}>Cancel</button></td>
+                <td><button className="btn btn-outline-dark" onClick={() => this.updateAppointment(appointment)}>Finished</button></td>
               </tr>
             );
           })}

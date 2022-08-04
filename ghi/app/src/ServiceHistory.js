@@ -49,7 +49,7 @@ class ServiceHistory extends React.Component {
         <div className="form-floating mb-3">
                 <input onChange={this.handleVinChange} value={this.state.vin} placeholder="vin" type="text" id="vin" name="vin"  className="form-control"  />
                 <label htmlFor="vinsearch">Enter Vin Here</label>
-                <button type="submit" className="btn btn-primary" onClick={(event) => this.handleSubmit(event)}>Search</button>
+                <button type="submit" className="btn btn-primary btn-dark" onClick={(event) => this.handleSubmit(event)}>Search</button>
         </div>
         </form>
         <table className="table table-striped">

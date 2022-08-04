@@ -33,9 +33,6 @@ class AutomobileInventoryList extends React.Component {
     return (
       <>
       <h1>Automobiles</h1>
-      <div className="d-grid gap-2 d-sm-flex justify-content-sm-left">
-              <Link to="/automobiles/new" className="btn btn-primary btn-lg px-3 gap-3">Add an Automobile</Link>
-      </div>
       <table className="table table-striped">
         <thead>
           <tr>

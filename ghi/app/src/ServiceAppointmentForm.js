@@ -126,7 +126,7 @@ class ServiceAppointmentForm extends React.Component {
                             <input onChange={this.handleReasonChange} value={this.state.reason} placeholder="reason" required type="text" name="reason" id="reason" className="form-control"/>
                             <label htmlFor="reason">Reason</label>
                         </div>
-                        <button className="btn btn-primary">Create</button>
+                        <button className="btn btn-primary btn-dark">Create</button>
                         </form>
                     </div>
                 </div>
