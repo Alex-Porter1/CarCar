@@ -10,9 +10,6 @@ class AutomobileVO(models.Model):
         self.is_sold = True
         self.save()
 
-    
-
-
 class SalesPerson(models.Model):
     name = models.CharField(max_length=80)
     employee_number = models.CharField(max_length=50, unique=True)

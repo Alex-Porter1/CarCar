@@ -38,6 +38,9 @@ class SAForm extends React.Component{
             employee_number:'',
           };
         this.setState(cleared);
+
+        const loadingMessage = document.getElementById('success-message');
+        loadingMessage.classList.remove("d-none");
     }
 }
 
@@ -47,17 +50,7 @@ handleFieldChange(event) {
 }
 
 
-// async componentDidMount() {
-//     const url = 'http://localhost:8000/api/conferences/';
-//     const response = await fetch(url);
-//     if (response.ok) {
-//         const data = await response.json();
-//         this.setState({conferences: data.conferences});
 
-        
-       
-//     }
-//   }
 
     render() {
         return (
@@ -74,7 +67,10 @@ handleFieldChange(event) {
                     <input onChange={this.handleFieldChange} value={this.state.employee_number} placeholder="employee_number" required type="text" name="employee_number" id="employee_number" className="form-control" />
                     <label htmlFor="name">Employee Number</label>
                   </div>
-                  <button className="btn btn-primary">Add</button>
+                  <button className="btn btn-primary btn-dark">Add</button>
+                  <p className="alert alert-success d-none mb-0" id="success-message" style={{marginTop:15}}>
+                    New sales person is created!
+                </p>
                 </form>
               </div>
             </div>
