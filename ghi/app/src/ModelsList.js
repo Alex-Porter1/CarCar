@@ -2,29 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function ModelsColumn(props) {
-    const handleDeleteClick = async modelurl =>{
-        const url ="http://localhost:8100"+modelurl
-        const fetchConfig ={
-            method:'delete'
-        }
-
-    const response  = await fetch(url,fetchConfig);
-    if(response.ok){
-        window.location.reload()
-
-    }
-}
 
     return (
         <div className="col">
           {props.list.map(data => {
+            
             return (
-               <div key={data.name} className="card mb-3 shadow">
+               <div key={data.href} className="card mb-3 shadow">
                 <img src={data.picture_url} className="card-img-top" />
                 <div className="card-body">
-                  <h5 className="card-title">{data.manufacturer}</h5>
-                </div>
-                <div className="card-footer">
+                    <h5 className="card-title">{data.name}</h5>
+                    <h6 className="card-title">{data.manufacturer_id}</h6>
                 </div>
               </div>
             );
@@ -52,8 +40,8 @@ class ModelsList extends React.Component {
           const data = await response.json();
           const requests = [];
           for (let model of data.models) {
-            console.log(model)
-            const detailUrl = `http://localhost:8100/api/models/${model.id}`;
+            // console.log(model)
+            const detailUrl = `http://localhost:8100/api/models/${model.id}/`;
             requests.push(fetch(detailUrl));
           }
           const responses = await Promise.all(requests);
@@ -63,6 +51,7 @@ class ModelsList extends React.Component {
             if (modelResponse.ok) {
               const details = await modelResponse.json();
               modelColumns[i].push(details);
+              
               i = i + 1;
               if (i > 2) {
                 i = 0;
@@ -72,7 +61,9 @@ class ModelsList extends React.Component {
             }
           }
           this.setState({modelColumns: modelColumns});
+          
         }
+        
       } catch (e) {
         console.error(e);
       }
@@ -85,13 +76,13 @@ class ModelsList extends React.Component {
             <img className="bg-white rounded shadow d-block mx-auto mb-4" src="" alt="" width="600" />
             <h1 className="display-5 fw-bold">Vehicle Models</h1>
             <div className="col-lg-6 mx-auto">
-              <p className="lead mb-4">
+              {/* <p className="lead mb-4">
               On he bouche le ma durant ferree. Ici affection fusillade signalant inassouvi situation ces. 
               Ca au capitaine soufflent repousser. 
               Agreerait sonnaient cartouche ii la messieurs annoncait te. Je sons cite prit ah xv. 
-              </p>
+              </p> */}
               <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <Link to="/new" className="btn btn-primary btn-lg px-4 gap-3">Create a vehicle model</Link>
+                {/* <Link to="/models/new" className="btn btn-primary btn-lg px-4 gap-3">Create a vehicle model</Link> */}
               </div>
             </div>
           </div>
@@ -100,6 +91,7 @@ class ModelsList extends React.Component {
             <div className="row">
               {this.state.modelColumns.map((modelList, index) => {
                 return (
+                    
                   <ModelsColumn key={index} list={modelList} />
                 );
               })}
@@ -113,3 +105,4 @@ class ModelsList extends React.Component {
 
 
 export default ModelsList;
+

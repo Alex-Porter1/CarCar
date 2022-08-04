@@ -28,6 +28,15 @@ class SaleRecordsEncoder(ModelEncoder):
         "customer":CustomerEncoder(),
         "vin":AutomobileVOEncoder(),
     }
+
+def api_automobileVO(request):
+    automobiles = AutomobileVO.objects.filter(is_sold=False)
+    return JsonResponse(
+        {"automobiles":automobiles},
+        encoder=AutomobileVOEncoder
+    )
+
+
 @require_http_methods(["GET", "POST"])
 def api_salespeople(request):
     if request.method=='GET':
@@ -112,7 +121,6 @@ def api_customer(request,pk):
     else:
         customer = Customer.objects.filter(id=pk)
         content = json.loads(request.body)
-        # customer = Customer.objects.filter(id=pk).update(**content)
         customer.update(**content)
         return JsonResponse(
             customer,
@@ -126,7 +134,7 @@ def api_records(request):
     if request.method=='GET':
         records = SaleRecords.objects.all()
         return JsonResponse(
-            records,
+            {"sales_records": records},
             encoder=SaleRecordsEncoder,
             safe= False
         )
@@ -136,7 +144,6 @@ def api_records(request):
             employee = content['sales_person']
             sale_person = SalesPerson.objects.get(employee_number=employee)
             content['sales_person']=sale_person
-            # sale_person = SalesPerson.objects.create(**content)
         except SalesPerson.DoesNotExist:
             return JsonResponse({"message": "Invalid sales person input."})
         
@@ -144,18 +151,20 @@ def api_records(request):
             phone = content['customer']
             customer = Customer.objects.get(phone_number = phone)
             content["customer"] = customer
-            # customer = SaleRecords.objects.create(**content)
         except Customer.DoesNotExist:
             return JsonResponse({"message": "Invalid customer input."})
 
         try:
             vin_number = content['vin']
-            vin = AutomobileVO.objects.get(import_vin=vin_number)
-            content['vin']=vin
-            # vin = SaleRecords.objects.create(**content)
-        except AutomobileVOEncoder.DoesNotExist:
-            return JsonResponse({"message": "Invalid vin input."})
-            
+            automobile = AutomobileVO.objects.get(import_vin=vin_number)
+            automobile.has_sold()
+            automobile.save()
+            content['vin']=automobile
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message":"Invalid VIN input"},status=400
+            )
+        
     
         record = SaleRecords.objects.create(**content)
         return JsonResponse(

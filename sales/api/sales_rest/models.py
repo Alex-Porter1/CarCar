@@ -8,6 +8,7 @@ class AutomobileVO(models.Model):
 
     def has_sold(self):
         self.is_sold = True
+        self.save()
 
     
 
