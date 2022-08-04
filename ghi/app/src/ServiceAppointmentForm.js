@@ -77,6 +77,7 @@ class ServiceAppointmentForm extends React.Component {
         this.setState({reason: value})
     }
 
+
     async componentDidMount() {
         const url = 'http://localhost:8080/api/technicians/';
     

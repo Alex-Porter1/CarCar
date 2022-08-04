@@ -10,6 +10,7 @@ from sqlite3 import IntegrityError
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
+        "import_href",
         "vin",
     ]
 
@@ -25,7 +26,7 @@ class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [
         "id",
-        "vin",
+        "VIP",
         "customer_name",
         "scheduled_appointment",
         "reason",
@@ -72,15 +73,27 @@ def api_list_service_appointments(request):
         )
     else:
         content = json.loads(request.body)
-        if "technician" in content:
-            try:
-                technician = Technician.objects.get(id=content["technician"])
-                content["technician"] = technician
-            except Technician.DoesNotExist:
+        vin = content["vin"]
+
+        try:
+            technician = Technician.objects.get(id=content["technician"])
+            content["technician"] = technician
+        except Technician.DoesNotExist:
                 return JsonResponse(
                     {"message": "Technician does not exist"},
                     status=400,
                 )
+
+        try:
+            vin_in_inventory = AutomobileVO.objects.get(vin=vin)
+        except AutomobileVO.DoesNotExist:
+            vin_in_inventory = None
+
+        if vin_in_inventory:
+            content["VIP"] = True
+        else:
+            content["VIP"] = False
+            
         appointment = ServiceAppointment.objects.create(**content)
         return JsonResponse(
             appointment,
@@ -120,4 +133,14 @@ def api_list_appointments_by_vin(request, vin):
             {"appointments": appointments},
             encoder=ServiceAppointmentEncoder,
         )
+
+@require_http_methods(["GET"])
+def api_get_automobilevos(request):
+    if request.method == "GET":
+        automobile = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"autos": automobile},
+            encoder=AutomobileVOEncoder,
+        )
+
 

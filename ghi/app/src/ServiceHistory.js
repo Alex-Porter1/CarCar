@@ -9,6 +9,7 @@ class ServiceHistory extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleVinChange = this.handleVinChange.bind(this);
 
+
     }
     
     async handleSubmit(event) {
@@ -38,7 +39,7 @@ class ServiceHistory extends React.Component {
         this.setState({vin: value});
     }
     
-
+    
 
     render () {
         return (
@@ -57,17 +58,23 @@ class ServiceHistory extends React.Component {
                 <th>Vin</th>
                 <th>Customer name</th>
                 <th>Date</th>
+                <th>Time</th>
+                <th>VIP</th>
                 <th>Technician</th>
                 <th>Reason</th> 
             </tr>
             </thead>
             <tbody>
             {this.state.appointments.map(appointment => {
+                let date = appointment.scheduled_appointment.slice(0, 10)
+                let time = appointment.scheduled_appointment.slice(11, 16)
                 return (
                 <tr key={appointment.id}>
                     <td>{ appointment.vin }</td>
                     <td>{ appointment.customer_name }</td>
-                    <td>{ appointment.scheduled_appointment }</td>
+                    <td>{ date }</td>
+                    <td>{ time }</td>
+                    <td>{ appointment.VIP ? "Yes" : "No" }</td>
                     <td>{ appointment.technician.technician_name }</td>
                     <td>{ appointment.reason }</td>
                 </tr>
