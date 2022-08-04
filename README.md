@@ -14,11 +14,12 @@ A Service Appointment Model. The properties will include a VIN(has to be unique)
 I will also need create an AutomobileVO model to poll from the Inventory Automobile model, using the VIN, import_href.
 Make sure to register the models to the admin.
 Make the migrations after creating these models.
-I will then need to create the polling functionality for the AutomobileVO.
+I will then need to create the polling functionality for the AutomobileVO to implement the VIP functionality.
 Use the admin to check if polling is working correctly. 
 After polling is working the way I want, I will work on creating the views.
 The views need a get, post, put, and delete.
-Create a view for the technician, 
+Create a view for the technician, service appointments, and automobileVO.
+
 
 
 

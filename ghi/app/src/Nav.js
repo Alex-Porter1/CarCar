@@ -17,9 +17,6 @@ function NewNav() {
             >
               <NavDropdown.Item href="/manufacturers">Manufacturers</NavDropdown.Item>
               <NavDropdown.Item href="/manufacturers/new">Add New Manufacturer</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Vehicle Models
-              </NavDropdown.Item>
               <NavDropdown.Item href="/automobiles">Automobile Inventory</NavDropdown.Item>
               <NavDropdown.Item href="/automobiles/new">Add New Automobile</NavDropdown.Item>
             </NavDropdown>
