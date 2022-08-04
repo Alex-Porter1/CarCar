@@ -43,7 +43,7 @@ function App(props) {
             <Route path="record" element={<RecordForm />} />
             <Route path="saleslist" element={<SalesList />} /> 
             <Route path="saleshistory" element={<SalesHistoryList />} /> 
-          <Route path="/" element={<MainPage />} />
+            
           <Route path="/manufacturers" element={<ManufacturerList />} />
           <Route path="/manufacturers/new" element={<ManufacturerForm />} />
           <Route path="/automobiles" element={<AutomobileInventoryList />} />
