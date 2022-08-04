@@ -140,7 +140,7 @@ class RecordForm extends React.Component{
                     <label htmlFor="price">Price</label>
                   </div>
 
-                <button className="btn btn-primary">Add</button>
+                <button className="btn btn-primary btn-dark">Add</button>
                 <p className="alert alert-success d-none mb-0" id="success-message" style={{marginTop:15}}>
                     New record is created!
                 </p>

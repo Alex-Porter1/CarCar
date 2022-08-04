@@ -72,7 +72,7 @@ class ModelsList extends React.Component {
     render() {
       return (
         <>
-          <div className="px-4 py-5 my-5 mt-0 text-center bg-info">
+          <div className="px-4 py-5 my-5 mt-0 text-center">
             <img className="bg-white rounded shadow d-block mx-auto mb-4" src="" alt="" width="600" />
             <h1 className="display-5 fw-bold">Vehicle Models</h1>
             <div className="col-lg-6 mx-auto">
@@ -87,7 +87,7 @@ class ModelsList extends React.Component {
             </div>
           </div>
           <div className="container">
-            <h2>Vehicle Models Here</h2>
+           
             <div className="row">
               {this.state.modelColumns.map((modelList, index) => {
                 return (
