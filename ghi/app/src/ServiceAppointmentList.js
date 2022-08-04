@@ -1,6 +1,5 @@
 import React from "react"
 
-
 class ServiceAppointmentList extends React.Component {
   constructor(props) {
     super(props)
@@ -9,6 +8,7 @@ class ServiceAppointmentList extends React.Component {
     this.updateAppointment = this.updateAppointment.bind(this);
   }
   
+
 
 
   async deleteAppointment(appointment) {
@@ -58,7 +58,6 @@ class ServiceAppointmentList extends React.Component {
     return (
       <>
       <h1>Service Appointments</h1>
-
       <table className="table table-striped">
         <thead>
           <tr>
@@ -91,6 +90,7 @@ class ServiceAppointmentList extends React.Component {
           })}
         </tbody>
       </table>
+
       </>
   );    
   }
