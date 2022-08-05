@@ -1,90 +1,93 @@
 import React from 'react';
 
-class SalesHistoryList extends React.Component{
+
+class SalesHistoryList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            sales_people:[],
-            sales_records:[],
-          };
-          this.handleFieldChange = this.handleFieldChange.bind(this);
-          
+            data_records: [],
+            sales_people: []
+        }
+
+        this.handleFieldChange = this.handleFieldChange.bind(this);
     }
 
-    handleFieldChange(event) {
+
+    async handleFieldChange(event) {
         const value = event.target.value;
-        this.setState({[event.target.id]: value})
-    }
+        // const personId = value[value.length-1]
+        // console.log(personId)
+        const url = `http://localhost:8090/api/personalsalerecord/${value}/`;
+        const response = await fetch(url);
+        
+        if (response.ok) {
+            const data_records = await response.json();
+            this.setState({data_records: data_records.records});
+        };
+    };
+
     
     async componentDidMount() {
-        const saurl = 'http://localhost:8090/api/salespeople/';
-        const response = await fetch(saurl);
-        if (response.ok) {
-            const data = await response.json();
-            this.setState({sales_people: data.sales_person});
-        }
+        const url_people = "http://localhost:8090/api/salespeople/";
+        const response_people = await fetch(url_people);
+        if (response_people.ok) {
+            const data_people = await response_people.json();
+            this.setState({sales_people: data_people.sales_person});
+        };
 
-        const responsea = await fetch('http://localhost:8090/api/records/')
-        if (responsea.ok) {
-            const data = await responsea.json()
-            this.setState({ sales_records: data.sales_records })
+        const url_records = "http://localhost:8090/api/records/";
+        const response_records = await fetch(url_records);
+        if (response_people.ok) {
+            const data_records = await response_records.json();
+            console.log(data_records)
+            this.setState({data_records: data_records.sales_records});
         }
-        }
+    }
 
-        render() {
-            return (
-                <>
-                <div className="row" style={{marginTop:50}}>
-                <div className="offset-3 col-6">
-                  <div className="shadow p-4 mt-4">
-                    <h1>Sales person history</h1>
-                    <form onSubmit={this.handleSubmit} id="create-sa-form">
-                      <div className="mb-3">
-                        <select onChange={this.handleFieldChange} value={this.state.sales_person} required id="sales_person" name="sales_person" className="form-select">
-                          <option value="">Choose a sales person</option>
-                          {this.state.sales_people.map(sales_person => {
-                                return (
-                                <option key={sales_person.employee_number} value={sales_person.id}>
-                                    {sales_person.name}
-                                </option>
-                                );
+
+    render() {
+        return (
+            <div>
+                <h2 className="mt-5"><b>Sales History</b></h2>
+                <select value={this.state.sales_person} onChange={this.handleFieldChange} required id="sales_person" name="sales_person" className="form-select mt-3">
+                    <option value="">Choose a salesperson</option>
+                    {this.state.sales_people.map(sales_person => {
+                        return (
+                            <option key={sales_person.id} value={sales_person.id}>
+                                {sales_person.name}
+                            </option>
+                        );
+                    })}
+                </select>
+
+                <div>
+                    <table className="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Sales Person</th> 
+                                <th>Customer</th>
+                                <th>VIN</th>
+                                <th>Sale price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales_person_details">
+                            {this.state.data_records.map (data => {
+                                return(
+                                    <tr key={data.sales_person.id}>
+                                        <td>{data.sales_person.name}</td>
+                                        <td>{data.customer.name}</td>
+                                        <td>{data.vin.import_vin}</td>
+                                        <td>{data.price}</td>
+                                    </tr>
+                                )
                             })}
-                        </select>
-                      </div>
-                    </form>
-                  </div>
+                        </tbody>
+                    </table>
                 </div>
-              </div>
-            
-            
-
-              <table className='table table-striped' style={{marginTop:50}}>
-                <thead>
-                    <tr>
-                    <th>Sales person</th>
-                    <th>Customer</th>
-                    <th>VIN</th>
-                    <th>Sale price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {this.state.sales_records.map(sales_record => {
-                    return (
-                        <tr key={sales_record.id}>
-                        <td>{ sales_record.sales_person.name }</td>
-                        <td>{ sales_record.customer.phone_number }</td>
-                        <td>{ sales_record.vin.import_vin}</td>
-                        <td>{ sales_record.price}</td>
-                        </tr>
-                    );
-                        })}
-                </tbody>
-                </table>
-            
-              </>
-            );
-          }   
-        
+            </div>
+        )
+    }
 }
+
 
 export default SalesHistoryList;
