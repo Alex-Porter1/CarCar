@@ -24,7 +24,7 @@ class AutomobileInventoryForm extends React.Component {
         event.preventDefault();
         const data = {...this.state};
         delete data.models
-        console.log(data);
+
 
         const automobileUrl = 'http://localhost:8100/api/automobiles/';
         const fetchConfig = {
@@ -36,8 +36,6 @@ class AutomobileInventoryForm extends React.Component {
         };
         const response = await fetch(automobileUrl, fetchConfig);
         if (response.ok) {
-          const newAutomobile = await response.json();
-          console.log(newAutomobile);
 
           const cleared = {
             color: '',

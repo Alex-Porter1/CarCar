@@ -50,7 +50,6 @@ class ServiceAppointmentList extends React.Component {
       this.setState({ appointments: data.appointments.filter(function(appointment){
         return appointment.finished === false;
       })})
-      console.log("APPOINTMENTS:", this.state.appointments)
     }
   }  
 

@@ -20,39 +20,31 @@ import ServiceHistory from './ServiceHistory';
 import TechnicianForm from './TechnicianForm';
 
 
-
-
-
 function App(props) {
   
   return (
     <BrowserRouter>
       <Nav />
-      
-     
-      <div className='container'>
-        <Routes>
-            <Route path="/" element={<MainPage />} />
-           
-            
-            <Route path="models"  element={<ModelsList models={props.models}/>}/>
-            <Route path="/models/new" element={<ModelForm />} />
-            <Route path="salesperson" element={<SAForm />} />
-            <Route path="customer" element={<CustomerForm />} />
-            <Route path="record" element={<RecordForm />} />
-            <Route path="saleslist" element={<SalesList />} /> 
-            <Route path="saleshistory" element={<SalesHistoryList />} /> 
-            
-          <Route path="/manufacturers" element={<ManufacturerList />} />
-          <Route path="/manufacturers/new" element={<ManufacturerForm />} />
-          <Route path="/automobiles" element={<AutomobileInventoryList />} />
-          <Route path="/automobiles/new" element={<AutomobileInventoryForm />} />
-          <Route path="/services" element={<ServiceAppointmentList />} />
-          <Route path="/services/new" element={<ServiceAppointmentForm />} />
-          <Route path="/history" element={<ServiceHistory />} />
-          <Route path="/technicians" element={<TechnicianForm />} />
-        </Routes>
-      </div>
+        <div className='container'>
+          <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="models"  element={<ModelsList models={props.models}/>}/>
+              <Route path="/models/new" element={<ModelForm />} />
+              <Route path="salesperson" element={<SAForm />} />
+              <Route path="customer" element={<CustomerForm />} />
+              <Route path="record" element={<RecordForm />} />
+              <Route path="saleslist" element={<SalesList />} /> 
+              <Route path="saleshistory" element={<SalesHistoryList />} /> 
+              <Route path="/manufacturers" element={<ManufacturerList />} />
+              <Route path="/manufacturers/new" element={<ManufacturerForm />} />
+              <Route path="/automobiles" element={<AutomobileInventoryList />} />
+              <Route path="/automobiles/new" element={<AutomobileInventoryForm />} />
+              <Route path="/services" element={<ServiceAppointmentList />} />
+              <Route path="/services/new" element={<ServiceAppointmentForm />} />
+              <Route path="/history" element={<ServiceHistory />} />
+              <Route path="/technicians" element={<TechnicianForm />} />
+          </Routes>
+        </div>
     </BrowserRouter>
   );
 }

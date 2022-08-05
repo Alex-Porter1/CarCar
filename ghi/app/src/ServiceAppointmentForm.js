@@ -26,7 +26,6 @@ class ServiceAppointmentForm extends React.Component {
         event.preventDefault();
         const data = {...this.state};
         delete data.technicians
-        console.log(data);
 
         const serviceUrl = 'http://localhost:8080/api/services/';
         const fetchConfig = {
@@ -38,8 +37,6 @@ class ServiceAppointmentForm extends React.Component {
         };
         const response = await fetch(serviceUrl, fetchConfig);
         if (response.ok) {
-          const newService = await response.json();
-          console.log(newService);
 
           const cleared = {
             vin: '',
