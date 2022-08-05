@@ -13,7 +13,7 @@ Go into our repo, and clone the main branch.
 
 After, cloning the main branch, go into your terminal, and cd into the correct directory you would like to clone the repo into.
 
-Then use, git clone and past the link into the terminal and run the command. 
+Then use, git clone and paste the link into the terminal and run the command. 
 
 After cloning into your correct directory, run docker-compose build. Then run docker-compose up. 
 
