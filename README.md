@@ -7,6 +7,19 @@ Team:
 
 ## Design
 
+We have an included image in our file, "CarCarExcalidraw.png" for our sticks and boxes.
+
+Go into our repo, and clone the main branch. 
+
+After, cloning the main branch, go into your terminal, and cd into the correct directory you would like to clone the repo into.
+
+Then use, git clone and past the link into the terminal and run the command. 
+
+After cloning into your correct directory, run docker-compose build. Then run docker-compose up. 
+
+After running those commands, go to http://localhost:3000.
+
+
 ## Service microservice
 
 I'm going to create a Technician Model. The properties will include a name and employee number(unique?).
