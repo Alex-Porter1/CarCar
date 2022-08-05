@@ -39,10 +39,10 @@ Create a view for the technician, service appointments, and automobileVO.
 
 ## Sales microservice
 
-Need to create a AutomobileVO model to poll data from Inventory Automobile model, properties will include the import_vin and I will define a function is_sold to track and change the state for the automobile's stock info. If the state is sold. we can not sell it anymore.
-create SalesPerson model which properties will include the person's name and employee number.The employee number will be unique in order to get the sepecific person wen need.
-create a Customer model which perperties will include customer's name,address and phone number.And phone number will be unique so that we can search customer by unique phone number.
-create SalesRecords model.  The properties will include a VIN which will take AuotomobilVO as foreignkey , salesperson which will take SalesPerson as forignkey, customer which will take Customer as the foreignkey, and also the price for the automobile.
+Need to create a AutomobileVO model(a value object of the Automobile model in the inventory_api) to get data, properties will include the import_vin and I will define a function is_sold to track and change the state for the automobile's stock info. If the state is sold. we can not sell it anymore.
+Create SalesPerson model which properties will include the person's name and employee number.The employee number will be unique in order to search the specific person wen need.
+Create a Customer model repersent a customer who will purchse an automobile which perperties will include customer's name,address and phone number.And phone number must be unique so that we can search customer by unique phone number if there pops up same name customers.
+Create SalesRecords model.This allows the user to document a sale made by the dealership, a sale made will also change the state of inventory for the automobile . The properties will include a VIN which will take AuotomobilVO as foreignkey , salesperson which will take SalesPerson as forignkey, customer which will take Customer as the foreignkey, and also the price for the automobile.
 Make the migrations after creating these models.
 Finish views.py to implement get, post, put, and delete methods for all the models. Here use encoders to make our code clean.
-Then make sure we can succuessfully poll data from Inventory by finishing poller.py, after that we can test our methid in Insomnia.
+Then make sure we can succuessfully poll data from Inventory by finishing poller.py, after that we can test our method in Insomnia.
