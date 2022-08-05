@@ -12,7 +12,7 @@ class AutomobileVOEncoder(ModelEncoder):
 
 class SalesPersonEncoder(ModelEncoder):
     model = SalesPerson
-    properties = ['name','employee_number']
+    properties = ['name','employee_number','id']
 
 
 class CustomerEncoder(ModelEncoder):
@@ -34,6 +34,13 @@ def api_automobileVO(request):
     return JsonResponse(
         {"automobiles":automobiles},
         encoder=AutomobileVOEncoder
+    )
+
+def api_personal_sale_record(request,pk):
+    records = SaleRecords.objects.filter(sales_person=pk)
+    return JsonResponse(
+        {"records":records},
+        encoder=SaleRecordsEncoder
     )
 
 
