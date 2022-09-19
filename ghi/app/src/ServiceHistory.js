@@ -44,15 +44,16 @@ class ServiceHistory extends React.Component {
     render () {
         return (
         <>
+        <div style={{marginTop:50}}>
         <h1>Service History</h1>
         <form className="input-group" onSubmit={this.handleSubmit}>
         <div className="form-floating mb-3">
                 <input onChange={this.handleVinChange} value={this.state.vin} placeholder="vin" type="text" id="vin" name="vin"  className="form-control"  />
                 <label htmlFor="vinsearch">Enter Vin Here</label>
-                <button type="submit" className="btn btn-primary btn-dark" onClick={(event) => this.handleSubmit(event)}>Search</button>
+                <button type="submit" className="btn btn-primary btn-dark" style={{marginTop:20}} onClick={(event) => this.handleSubmit(event)}>Search</button>
         </div>
         </form>
-        <table className="table table-striped">
+        <table className="table table-striped" style={{marginTop:20}}>
             <thead>
             <tr>
                 <th>Vin</th>
@@ -82,6 +83,7 @@ class ServiceHistory extends React.Component {
             })}
             </tbody>
         </table>
+        </div>
         </>
     );    
     }

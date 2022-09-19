@@ -13,3 +13,129 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+nav {
+  
+  height: 60px;
+}
+
+
+
+#a1, #a2, #a3, #a4, #a5 {
+  font-size: larger;
+  margin-left: 50px;
+}
+
+#a1:hover, #a2:hover, #a3:hover, #a4:hover, #a5:hover {
+  color: black;
+  transform: scale(1.1);
+}
+
+
+.main-title {
+  font-size: 30px;
+}
+
+
+.dropdown-item:hover {
+  color: black;
+  transform: scale(1.1);
+}
+
+
+.eachCard {
+  filter: grayscale(80%);
+  -webkit-filter: grayscale(80%);
+  opacity:0.8;
+  transition: 1s ease;
+}
+
+.eachCard:hover {
+  filter: grayscale(0%);
+  filter: rgb(114, 113, 113);
+  -webkit-filter: grayscale(0%);
+  filter: none;
+  opacity:1;
+  transition: 1s ease;
+}
+
+
+.cardTitle {
+  height: 55px;
+  overflow: hidden;
+  transition: height 1s;
+  font-size: 50px;
+
+}
+
+.cardTitle1:hover {
+  height: 180px;
+  width: block;
+}
+
+.cardTitle2:hover {
+  height: 150px;
+}
+
+
+.choice {
+  color:gray;
+  font-size: 18px;
+}
+
+.choice:hover {
+  color:black;
+  transform: scale(1.1);
+}
+
+.star{
+  cursor: pointer;
+  transition: color 200ms;
+} 
+
+input[type="radio"]{
+  display: none
+}
+
+.choice {
+  color:gray;
+  font-size: 15px;
+}
+
+.choice:hover {
+  color:black;
+  transform: scale(1.1);
+}
+
+.checkbox_manufacturerlist {
+  width:19%; height:auto; float:left; display:inline;
+  margin-top: 40px;
+  margin-right: 1%;
+  
+}
+
+.table_manufacturerlist {
+  width:80%; float:left; display:inline-flexbox
+}
+
+.checkbox_check {
+  margin-right: 5px;
+
+}
+
+.checkbox1{
+  padding:5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  /* color:lightgrey; */
+  color:black;
+  
+}
+
+.checkbox1:hover {
+  color:black;
+  transform: scale(1.1);
+  font-weight: bold;
+  ;
+}

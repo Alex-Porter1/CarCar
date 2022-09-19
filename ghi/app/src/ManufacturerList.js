@@ -32,6 +32,7 @@ class ManufacturerList extends React.Component {
   render () {
     return (
       <>
+      <div style={{marginTop:50}}>
       <h1>Manufacturers</h1>
       <table className="table table-striped">
         <thead>
@@ -51,6 +52,7 @@ class ManufacturerList extends React.Component {
           })}
         </tbody>
       </table>
+      </div>
       </>
   );    
   }

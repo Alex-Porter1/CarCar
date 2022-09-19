@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainPage from './MainPage';
 import Nav from './Nav';
@@ -9,7 +10,6 @@ import CustomerForm from './CustomerForm';
 import RecordForm from './RecordForm';
 import SalesList from './SalesList';
 import SalesHistoryList from './SalesHistory';
-
 import ManufacturerList from './ManufacturerList';
 import ManufacturerForm from './ManufacturerForm';
 import AutomobileInventoryList from './AutomobileInventoryList';
@@ -18,9 +18,16 @@ import ServiceAppointmentList from './ServiceAppointmentList';
 import ServiceAppointmentForm from './ServiceAppointmentForm';
 import ServiceHistory from './ServiceHistory';
 import TechnicianForm from './TechnicianForm';
+import './index.css'
+import Login from './login.component';
+import SignUp from './signup.component';
 
 
 function App(props) {
+  // const [token, setToken] = useState();
+  // if(!token) {
+  //   return <Login setToken={setToken} />
+  // }
   
   return (
     <BrowserRouter>
@@ -43,6 +50,8 @@ function App(props) {
               <Route path="/services/new" element={<ServiceAppointmentForm />} />
               <Route path="/history" element={<ServiceHistory />} />
               <Route path="/technicians" element={<TechnicianForm />} />
+              <Route path="/sign-in" element={<Login />} />
+              <Route path="/sign-up" element={<SignUp />} />
           </Routes>
         </div>
     </BrowserRouter>

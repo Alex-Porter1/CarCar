@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { Dropdown, NavDropdown, Navbar, Nav, Container } from 'react-bootstrap';
+import "./index.css";
 
 
 function NewNav() {
   return (
-
+    <>
     <Navbar variant="dark" bg="dark" expand="lg">
       <Container fluid>
         <Navbar.Brand href="/">CarCar</Navbar.Brand>
@@ -46,12 +47,31 @@ function NewNav() {
               <NavDropdown.Item href="/saleslist">List all sales</NavDropdown.Item>
               <NavDropdown.Item href="/saleshistory">Sales person history</NavDropdown.Item>
             </NavDropdown>
+
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title="Login"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="/sign-in">Login</NavDropdown.Item>
+              <NavDropdown.Item href="/sign-up">Sign up</NavDropdown.Item>
+            </NavDropdown>
+
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
+      
     </Navbar>
+    
+    </>
   );
 }
 
 
 export default NewNav;
+
+
+
+{/* <NavLink className="nav-link" to={'/sign-in'}>Login</NavLink>
+<NavLink className="nav-link" to={'/sign-up'}>Sign up</NavLink> */}
