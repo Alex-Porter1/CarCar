@@ -76,11 +76,7 @@ class ModelsList extends React.Component {
             <img className="bg-white rounded shadow d-block mx-auto mb-4" src="" alt="" width="600" />
             <h1 className="display-5 fw-bold">Vehicle Models</h1>
             <div className="col-lg-6 mx-auto">
-              {/* <p className="lead mb-4">
-              On he bouche le ma durant ferree. Ici affection fusillade signalant inassouvi situation ces. 
-              Ca au capitaine soufflent repousser. 
-              Agreerait sonnaient cartouche ii la messieurs annoncait te. Je sons cite prit ah xv. 
-              </p> */}
+            
               <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 {/* <Link to="/models/new" className="btn btn-primary btn-lg px-4 gap-3">Create a vehicle model</Link> */}
               </div>

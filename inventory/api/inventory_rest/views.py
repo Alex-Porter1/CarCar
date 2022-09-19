@@ -212,7 +212,7 @@ def api_vehicle_model(request, pk):
         try:
             content = json.loads(request.body)
             model = VehicleModel.objects.get(id=pk)
-            props = ["name", "picture_url"]
+            props = ["name", "picture_url","manufacturer_id"]
             for prop in props:
                 if prop in content:
                     setattr(model, prop, content[prop])

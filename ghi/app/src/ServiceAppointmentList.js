@@ -56,6 +56,7 @@ class ServiceAppointmentList extends React.Component {
   render () {
     return (
       <>
+      <div style={{marginTop:50}}>
       <h1>Service Appointments</h1>
       <table className="table table-striped">
         <thead>
@@ -89,7 +90,7 @@ class ServiceAppointmentList extends React.Component {
           })}
         </tbody>
       </table>
-
+      </div>
       </>
   );    
   }
