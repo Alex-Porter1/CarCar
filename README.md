@@ -49,4 +49,8 @@ Finish views.py to implement get, post, put, and delete methods for all the mode
 Then make sure we can succuessfully poll data from Inventory by finishing poller.py, after that we can test our method in Insomnia.
 
 
+
+
+## App Demo
+
 ![demo](/ghi/app/public/Screen%20Recording%202022-09-19%20at%206.48.56%20PM.mov)
