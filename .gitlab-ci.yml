@@ -35,14 +35,6 @@ service-api-unit-test-job:
     - python manage.py migrate  # Migrate the database
 
 
-lint-job:
-  image: python:3-bullseye
-  stage: test
-  script:
-    - pip install flake8
-    - flake8 inventory sales service
-
-
 build-front-end-job:
   stage: build
   image: node:lts-bullseye
