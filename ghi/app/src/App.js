@@ -24,36 +24,33 @@ import SignUp from './signup.component';
 
 
 function App(props) {
-  // const [token, setToken] = useState();
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
-  
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, '');
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename} >
       <Nav />
-        <div className='container'>
-          <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="models"  element={<ModelsList models={props.models}/>}/>
-              <Route path="/models/new" element={<ModelForm />} />
-              <Route path="salesperson" element={<SAForm />} />
-              <Route path="customer" element={<CustomerForm />} />
-              <Route path="record" element={<RecordForm />} />
-              <Route path="saleslist" element={<SalesList />} /> 
-              <Route path="saleshistory" element={<SalesHistoryList />} /> 
-              <Route path="/manufacturers" element={<ManufacturerList />} />
-              <Route path="/manufacturers/new" element={<ManufacturerForm />} />
-              <Route path="/automobiles" element={<AutomobileInventoryList />} />
-              <Route path="/automobiles/new" element={<AutomobileInventoryForm />} />
-              <Route path="/services" element={<ServiceAppointmentList />} />
-              <Route path="/services/new" element={<ServiceAppointmentForm />} />
-              <Route path="/history" element={<ServiceHistory />} />
-              <Route path="/technicians" element={<TechnicianForm />} />
-              <Route path="/sign-in" element={<Login />} />
-              <Route path="/sign-up" element={<SignUp />} />
-          </Routes>
-        </div>
+      <div className='container'>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="models" element={<ModelsList models={props.models} />} />
+          <Route path="/models/new" element={<ModelForm />} />
+          <Route path="salesperson" element={<SAForm />} />
+          <Route path="customer" element={<CustomerForm />} />
+          <Route path="record" element={<RecordForm />} />
+          <Route path="saleslist" element={<SalesList />} />
+          <Route path="saleshistory" element={<SalesHistoryList />} />
+          <Route path="/manufacturers" element={<ManufacturerList />} />
+          <Route path="/manufacturers/new" element={<ManufacturerForm />} />
+          <Route path="/automobiles" element={<AutomobileInventoryList />} />
+          <Route path="/automobiles/new" element={<AutomobileInventoryForm />} />
+          <Route path="/services" element={<ServiceAppointmentList />} />
+          <Route path="/services/new" element={<ServiceAppointmentForm />} />
+          <Route path="/history" element={<ServiceHistory />} />
+          <Route path="/technicians" element={<TechnicianForm />} />
+          <Route path="/sign-in" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
