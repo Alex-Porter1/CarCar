@@ -1,0 +1,56 @@
+stages: 
+  - test       
+  - build
+  - deploy
+
+services:
+  - postgres:14.2-bullseye
+
+variables:
+  POSTGRES_PASSWORD: test
+  DATABASE_URL: postgresql://postgres:test@postgres:5432/postgres
+
+inventory-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - cd inventory/api  # Or, whatever the name of your directory is
+    - pip install -r requirements.txt
+    - python manage.py migrate  # Migrate the database
+
+sales-api-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - cd sales/api  # Or, whatever the name of your directory is
+    - pip install -r requirements.txt
+    - python manage.py migrate  # Migrate the database
+
+service-api-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - cd service/api  # Or, whatever the name of your directory is
+    - pip install -r requirements.txt
+    - python manage.py migrate  # Migrate the database
+
+
+lint-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 inventory sales service
+
+
+build-front-end-job:
+  stage: build
+  image: node:lts-bullseye
+  script:
+    - cd ghi
+    - npm install
+    - npm run build
+    - cp build/index.html build/404.html
+  artifacts:
+    paths:
+      - ghi/build/
